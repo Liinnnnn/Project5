@@ -18,5 +18,18 @@ public class PlayerController : MonoBehaviour
         float verticalInput = joystick.Vertical;
         Vector2 movement = new Vector2(horizontalInput, verticalInput);
         rb.linearVelocity = movement * speed;
+        Flip(horizontalInput);
+    }
+    private void Flip(float horizontalInput)
+    {
+        if (horizontalInput > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (horizontalInput < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }
+

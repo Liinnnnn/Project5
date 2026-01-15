@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Enemy died.");
-            Destroy(gameObject);
+            EnemyController.instance.Death();
         }
     }
     void OnDrawGizmos()

@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem deathEffect;
     private float attackDelay;
     private float attackTimer;
+    public static EnemyController instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +23,10 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
         attackDelay = 1f / attackRate;
+    }
+    void Awake()
+    {
+        instance = this;
     }
     // Update is called once per frame
     void Update()
@@ -67,7 +72,7 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
     }
-    private void Death()
+    public void Death()
     {
         deathEffect.Play();
         deathEffect.transform.SetParent(null);  
