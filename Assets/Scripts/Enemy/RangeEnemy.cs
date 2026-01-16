@@ -46,8 +46,8 @@ public class RangeEnemy : MonoBehaviour
    
     private void MoveTowardsPlayer()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = (player.transform.position - transform.position).normalized;
+        rangedAttack.Flip(direction);
         Vector2 newPosition = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         transform.position = newPosition;
     }

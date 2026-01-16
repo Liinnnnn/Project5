@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -9,7 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float playerDetectionRange = 5.0f;
     [SerializeField] private float damage = 10.0f;
     [SerializeField] private float attackRate;
-
+    [SerializeField] private Animator animator;
     
     private float attackDelay;
     private float attackTimer;
@@ -29,7 +30,6 @@ public class EnemyController : MonoBehaviour
     {
         instance = this;
         
-        
     }
     // Update is called once per frame
     void Update()
@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
     }
     private void TryAttackPlayer()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.getCenter());
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
     
         if (distanceToPlayer <= playerDetectionRange)
         {
@@ -60,15 +60,21 @@ public class EnemyController : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        
+        animator.SetBool("Attack",true);
         player.TakeDamage(damage);   
         attackTimer = 0f;
        
     }
     private void MoveTowardsPlayer()
     {
-        Vector2 direction = (player.transform.position - transform.position).normalized;
-        Vector2 newPosition = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        Vector2 direction = (player.getCenter() - (Vector2)transform.position).normalized;
+        Vector2 newPosition = Vector2.MoveTowards(transform.position, player.getCenter(), speed * Time.deltaTime);
+        if (direction.x > 0) {
+            transform.localScale = new Vector3(Math.Abs(transform.localScale.x),transform.localScale.y);
+        } 
+        else if (direction.x < 0) {
+            transform.localScale = new Vector3(-Math.Abs(transform.localScale.x),transform.localScale.y);
+        }
         transform.position = newPosition;
     }   
 

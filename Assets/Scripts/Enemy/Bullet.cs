@@ -9,14 +9,14 @@ public class Bullet : MonoBehaviour
     private RangedAttack enemy;
     [Header("Bullet Settings")]
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float damage;
+    [SerializeField] private float damage ;
     void Start()
     {
     }
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = gameObject.GetComponent<Player>();
+        player = FindFirstObjectByType<Player>();
     }
     void OnEnable()
     {

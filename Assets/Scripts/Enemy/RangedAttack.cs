@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -59,18 +60,27 @@ public class RangedAttack : MonoBehaviour
             // player.TakeDamage(damage);
             ShootProjectile();
             attackTimer = 0f;
-        }
+        } 
     }
     Vector2 gizmoDirection;
     private void ShootProjectile()
     {
         Vector2 direction = (player.getCenter() - (Vector2)shootPoint.position).normalized;  
+        Flip(direction);       
         Bullet bullet = bulletPool.Get();
         bullet.Shoot(damage, direction);
         gizmoDirection = direction;
         Debug.Log("Ranged attack: Shot projectile towards player.");
     }
-
+    public void Flip(Vector2 direction)
+    {
+        if (direction.x > 0) {
+            transform.localScale = new Vector3(Math.Abs(transform.localScale.x),transform.localScale.y);
+        } 
+        else if (direction.x < 0) {
+            transform.localScale = new Vector3(-Math.Abs(transform.localScale.x),transform.localScale.y);
+        }
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

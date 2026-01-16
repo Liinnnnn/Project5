@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 4d06dd4e23304054299cf6a6cd3135bf
+guid: f6582e36b1a246e4aa34628028cb63c5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1750363475519744411
-    second: Char_0
+      213: -8357494700477734146
+    second: Pellet_0
+  - first:
+      213: 3043844852662146109
+    second: Pellet_1
+  - first:
+      213: -1244112600053982112
+    second: Pellet_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,8 +55,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.074203044}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -139,13 +145,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Char_0
+      name: Pellet_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 7
-        width: 82
-        height: 114
+        x: 6
+        y: 16
+        width: 5
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +160,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b992c22ae4a8a4810800000000000000
-      internalID: 1750363475519744411
+      spriteID: ef2a0dd89d6340c80800000000000000
+      internalID: -8357494700477734146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pellet_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 19
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34145a34c8ed3a20800000000000000
+      internalID: 3043844852662146109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pellet_2
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 9
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06cd13d8e260cbee0800000000000000
+      internalID: -1244112600053982112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pellet_3
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 13
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc3c02d0c26525146826b3fed8b247a8
+      internalID: -274500400
       vertices: []
       indices: 
       edges: []
@@ -164,17 +236,22 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 210ca5d1b95411d4fa4528841000de4b
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Char_0: 1750363475519744411
+      Pellet_0: -8357494700477734146
+      Pellet_1: 3043844852662146109
+      Pellet_2: -1244112600053982112
+      Pellet_3: -274500400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
