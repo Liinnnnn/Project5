@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private float health ;
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private Collider2D playerCollider;
     void Start()
     {
         health = MaxHealth;
@@ -42,5 +43,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Player died.");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public Vector2 getCenter()
+    {
+        return (Vector2)transform.position + playerCollider.offset;
     }
 }

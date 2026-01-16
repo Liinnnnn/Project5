@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     private List<Enemy> damagedEnemies = new List<Enemy>();
     [Header("References")]
     [SerializeField] private Transform HitPoint;
-    [SerializeField] private float hitRadius = 0.2f;
+    [SerializeField] private PolygonCollider2D weaponCollider;
     private Animator animator;
     [Header("Weapon Properties")]
     [SerializeField] private float damage = 10f;
@@ -111,7 +111,10 @@ public class Weapon : MonoBehaviour
     }
     private void AttackEnemy()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(HitPoint.position, hitRadius, enemyLayer);
+        // Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(HitPoint.position, hitRadius, enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(weaponCollider.bounds.min, 
+        weaponCollider.bounds.max, 
+        enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
             Enemy e = enemy.GetComponent<Enemy>();
@@ -128,7 +131,6 @@ public class Weapon : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(HitPoint.position, hitRadius);
+       
     }
 }
