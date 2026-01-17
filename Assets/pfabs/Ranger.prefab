@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeEnemy
   speed: 1
   rangePlayerDetectionRange: 5.66
+  projectile: {fileID: 0}
 --- !u!114 &5840537371955902094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttack
   damage: 10
   attackRate: 0.5
-  projectile: {fileID: 3116268533570371283, guid: 210c7590680c1144fbe1afbe5be21bc6, type: 3}
+  projectile: {fileID: -5418957698966525634, guid: 210c7590680c1144fbe1afbe5be21bc6, type: 3}
   shootPoint: {fileID: 7430188479821223412}
 --- !u!114 &8756952500154135226
 MonoBehaviour:

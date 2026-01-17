@@ -11,35 +11,35 @@ public class RangedAttack : MonoBehaviour
     private float attackDelay;
     private float attackTimer;
     [Header("Projectile Settings")]
-    [SerializeField] private Bullet projectile;
+    [SerializeField] private EnemyBullet projectile;
     [SerializeField] private Transform shootPoint;
-    private ObjectPool<Bullet> bulletPool;
+    private ObjectPool<EnemyBullet> bulletPool;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = FindFirstObjectByType<Player>();
         attackDelay = 1f / attackRate;
-        bulletPool = new ObjectPool<Bullet>(createFunc,actionOnGet,actionOnRelease,actionOnDestroy);
+        bulletPool = new ObjectPool<EnemyBullet>(createFunc,actionOnGet,actionOnRelease,actionOnDestroy);
 
     }
-    private Bullet createFunc()
+    private EnemyBullet createFunc()
     {
-        Bullet bullet = Instantiate(projectile, transform.position, Quaternion.identity);
+        EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity);
         bullet.Configure(this);
         return bullet;
     }
-    private void actionOnGet(Bullet bullet)
+    private void actionOnGet(EnemyBullet bullet)
     {
         bullet.transform.position = shootPoint.position;
         bullet.reload();
         bullet.gameObject.SetActive(true);
     }
-    private void actionOnRelease(Bullet bullet)
+    private void actionOnRelease(EnemyBullet bullet)
     {
         bullet.gameObject.SetActive(false);
     }
-    private void actionOnDestroy(Bullet bullet)
+    private void actionOnDestroy(EnemyBullet bullet)
     {
         Destroy(bullet.gameObject);
     }
@@ -48,7 +48,7 @@ public class RangedAttack : MonoBehaviour
     {
         TryShooting();
     }
-    public void releaseBullet(Bullet bullet)
+    public void releaseBullet(EnemyBullet bullet)
     {
         bulletPool.Release(bullet);
     }
@@ -67,7 +67,7 @@ public class RangedAttack : MonoBehaviour
     {
         Vector2 direction = (player.getCenter() - (Vector2)shootPoint.position).normalized;  
         Flip(direction);       
-        Bullet bullet = bulletPool.Get();
+        EnemyBullet bullet = bulletPool.Get();
         bullet.Shoot(damage, direction);
         gizmoDirection = direction;
         Debug.Log("Ranged attack: Shot projectile towards player.");

@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Rigidbody2D rb;
     private Player player;
-    private RangedAttack enemy;
+    private RangedAttack rangedAttack;
     [Header("Bullet Settings")]
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float damage ;
+    [SerializeField] private float damage;
     void Start()
     {
     }
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     private IEnumerator backToPool()
     {
         yield return new WaitForSeconds(5f);
-        enemy.releaseBullet(this);
+        rangedAttack.releaseBullet(this);
     }
    
     public void Shoot(float damage,Vector2 dir)
@@ -34,9 +34,9 @@ public class Bullet : MonoBehaviour
         transform.right = dir;
         rb.linearVelocity = dir * speed;
     }
-    public void Configure(RangedAttack enemy)
+    public void Configure(RangedAttack rangedAttack)
     {
-        this.enemy = enemy;
+        this.rangedAttack = rangedAttack;
     }
     public void reload()
     {
@@ -52,7 +52,7 @@ public class Bullet : MonoBehaviour
                 Debug.Log("Bullet hit the player and dealt damage.");
             }
             StopAllCoroutines();
-            enemy.releaseBullet(this);
+            rangedAttack.releaseBullet(this);
         }
         
     }
