@@ -1286,7 +1286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1257501792}
-  - component: {fileID: 1257501790}
+  - component: {fileID: 1257501794}
   - component: {fileID: 1257501793}
   m_Layer: 0
   m_Name: Stick_0
@@ -1295,27 +1295,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1257501790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257501789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f3cf00615b26a7449b6eaf168f037b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  HitPoint: {fileID: 1935926858}
-  weaponCollider: {fileID: 1935926859}
-  damage: 10
-  range: 2.28
-  attackDelay: 2
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  aimLerp: 6
 --- !u!4 &1257501792
 Transform:
   m_ObjectHideFlags: 0
@@ -1354,6 +1333,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1257501794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257501789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1eaf32d9908d44abcf199b5146e7ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  damage: 10
+  range: 2
+  attackDelay: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  aimLerp: 12
+  HitPoint: {fileID: 1935926858}
+  weaponCollider: {fileID: 1935926859}
 --- !u!1 &1261445115
 GameObject:
   m_ObjectHideFlags: 0
@@ -8262,6 +8262,10 @@ PrefabInstance:
       propertyPath: aimLerp
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8488522465468560276, guid: 09b844764ad953f4494d3c6102c86ee0, type: 3}
+      propertyPath: bulletPrebs
+      value: 
+      objectReference: {fileID: 2474514012140219492, guid: 92f8032569927974cbf6581350b27125, type: 3}
     - target: {fileID: 8737129195539913004, guid: 09b844764ad953f4494d3c6102c86ee0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.0555
