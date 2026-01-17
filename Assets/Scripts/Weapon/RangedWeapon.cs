@@ -55,12 +55,12 @@ public class RangedWeapon : Weapon
         
         if (closestEnemy != null) {
             targetDirection = (closestEnemy.transform.position - transform.position).normalized;
-            transform.right = Vector3.Lerp(transform.right, targetDirection, Time.deltaTime * aimLerp);
+            transform.up = Vector3.Lerp(transform.up, targetDirection, Time.deltaTime * aimLerp);
             ManageShooting();
             return;
         }else
         {
-            transform.right = Vector3.Lerp(transform.right, targetDirection, Time.deltaTime * aimLerp);
+            transform.up = Vector3.Lerp(transform.up, targetDirection, Time.deltaTime * aimLerp);
         }
     }
 
@@ -69,15 +69,17 @@ public class RangedWeapon : Weapon
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackDelay)
         {
-            attackTimer = 0f;
             ShootProjectile();
+            attackTimer = 0f;
         } 
     }
 
     private void ShootProjectile()
     {
+        float damage = getDamage(out bool crits);
+
         Bullet intancsezbullet = bulletPool.Get();
-        intancsezbullet.Shoot(damage,transform.right);
+        intancsezbullet.Shoot(damage,transform.up);
     }
 
 }

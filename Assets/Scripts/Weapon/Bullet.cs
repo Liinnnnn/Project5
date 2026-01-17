@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float damage;
     [SerializeField] private LayerMask enemyMask;
+    private Enemy target;
     void Start()
     {
         
@@ -30,6 +31,7 @@ public class Bullet : MonoBehaviour
     public void reload()
     {
         rb.linearVelocity = Vector2.zero;
+        target = null;
     }
     
     public void Configure(RangedWeapon rangedWeapon)
@@ -39,18 +41,20 @@ public class Bullet : MonoBehaviour
     public void Shoot(float damage,Vector2 dir)
     {
         this.damage = damage;
-        transform.right = dir;
+        transform.up = dir;
         rb.linearVelocity = dir * speed;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (target != null)
+        {
+            return;
+        }
         if (isEnemyMask(collision.gameObject.layer,enemyMask))
         {
-            if(collision!= null)
-            {
-                Attack(collision.gameObject.GetComponent<Enemy>());
-            }
+            target = collision.gameObject.GetComponent<Enemy>();
             StopAllCoroutines();
+            Attack(target);
             rangedWeapon.releaseBullet(this);
         }
     }

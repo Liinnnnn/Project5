@@ -46,7 +46,15 @@ public abstract class Weapon : MonoBehaviour
         
         return closestEnemy;
     }
-  
+    protected float getDamage(out bool isCrits)
+    {
+        isCrits = false;
+        if (Random.Range(0,100)<=50)
+        {
+            return damage * 2;
+        }
+        return damage;
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

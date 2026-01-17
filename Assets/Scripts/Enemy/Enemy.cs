@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,8 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float MaxHealth = 20f;
     [SerializeField] private ParticleSystem deathEffect;
     private float health;
-
-
+    public static event Action<Vector2> onDying;
     void Start()
     {
         health = MaxHealth;
@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour
     private void Death()
     {
         deathEffect.Play();
-        deathEffect.transform.SetParent(null);  
+        deathEffect.transform.SetParent(null);
+        onDying?.Invoke(transform.position);  
         Destroy(this.gameObject);    
     }   
 }
