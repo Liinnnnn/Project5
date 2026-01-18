@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     }   
     private void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.instance.SetGameState(GameState.GAMEOVER);
     }
     public Vector2 getCenter()
     {

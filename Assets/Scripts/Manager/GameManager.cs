@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Application.targetFrameRate = 60;
         SetGameState(GameState.MENU);
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
@@ -24,6 +25,18 @@ public class GameManager : MonoBehaviour
         if(instance == null) instance = this;
         else Destroy(gameObject);
     }
+    public void startGame()
+    {
+        SetGameState(GameState.GAME);
+    }
+    public void openShop()
+    {
+        SetGameState(GameState.SHOP);
+    }
+     public void openWeapon()
+    {
+        SetGameState(GameState.WEAPONCHOSE);
+    }
     public void SetGameState(GameState gameState)
     {
         IEnumerable<IGameStateListener> nameState =  
@@ -34,6 +47,12 @@ public class GameManager : MonoBehaviour
             gameStateListener.GameStateChangeCallBack(gameState);
         }
     }
+
+    public void ManagerGameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void WaveCompleteCallBack()
     {
         if (Player.instance.hasLevelUP())

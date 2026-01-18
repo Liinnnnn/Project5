@@ -29,10 +29,8 @@ public class WaveManager : MonoBehaviour,IGameStateListener
     private int currentWave;
     void Start()
     {
-        StartWave(currentWave);
+        
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +40,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             ManageCurrentWave();
         }else
         {
-            StartNextWave();
+            StartCoroutine(StartNextWave());
         }
     }
 
@@ -81,19 +79,20 @@ public class WaveManager : MonoBehaviour,IGameStateListener
         }
         timer += Time.deltaTime;
     }
-    private void StartNextWave()
+    private IEnumerator StartNextWave()
     {
         isTimerOn =false;
         currentWave++;
         if(currentWave >= waves.Length)
         {
-            Debug.Log(null);
+            GameManager.instance.SetGameState(GameState.COMPLETE);
         }
         else
         { 
             GameManager.instance.WaveCompleteCallBack();
             // StartCoroutine(StartWave(currentWave));
         } 
+        yield return new WaitForSeconds(5f);
     }
 
     private Vector2 SpawnPosition()
@@ -106,6 +105,23 @@ public class WaveManager : MonoBehaviour,IGameStateListener
 
     public void GameStateChangeCallBack(GameState gameState)
     {
-        Debug.Log("Game State");
+        switch (gameState)
+        {
+            case GameState.GAME :
+                StartWave(currentWave);
+                break;
+            case GameState.WAVETRANS :
+            case GameState.SHOP :
+            case GameState.MENU :
+                GameObject[] e = GameObject.FindGameObjectsWithTag("Enemy");
+                if (e!=null)
+                {
+                    foreach (GameObject obj in e)
+                    {
+                        Destroy(obj);
+                    }
+                }
+                break;
+        }
     }
 }
