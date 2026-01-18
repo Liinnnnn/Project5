@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerDetection : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private CircleCollider2D playerCollider;
+    [SerializeField] private CircleCollider2D range;
     void Start()
     {
         
@@ -16,13 +16,13 @@ public class PlayerDetection : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Hp hp))
+        if (collision.TryGetComponent(out ICollectibles collectibles))
         {
-            if (!collision.IsTouching(playerCollider))
+            if (!collision.IsTouching(range))
             {
                 return;
             }
-            hp.Collect(GetComponent<Player>());
+            collectibles.Collect(GetComponent<Player>());
         }
     }
 }

@@ -70,7 +70,6 @@ public class RangedAttack : MonoBehaviour
         EnemyBullet bullet = bulletPool.Get();
         bullet.Shoot(damage, direction);
         gizmoDirection = direction;
-        Debug.Log("Ranged attack: Shot projectile towards player.");
     }
     public void Flip(Vector2 direction)
     {

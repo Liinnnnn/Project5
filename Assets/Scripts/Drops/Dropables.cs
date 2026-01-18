@@ -1,19 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class Hp : MonoBehaviour
+public abstract class Dropables : MonoBehaviour,ICollectibles
 {
     private bool collected;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        collected = false;
     }
     public void Collect(Player player)
     {
@@ -38,8 +31,5 @@ public class Hp : MonoBehaviour
         Collected();
     }
 
-    private void Collected()
-    {
-        gameObject.SetActive(false);
-    }
+    protected abstract void Collected();
 }

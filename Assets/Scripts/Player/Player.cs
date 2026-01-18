@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
     }   
     private void Die()
     {
-        Debug.Log("Player died.");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public Vector2 getCenter()

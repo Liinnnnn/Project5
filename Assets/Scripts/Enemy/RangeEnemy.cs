@@ -20,7 +20,6 @@ public class RangeEnemy : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("Player not found in the scene.");
             Destroy(gameObject);
         }
     }
