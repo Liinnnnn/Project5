@@ -14,11 +14,9 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        Debug.Log("Enemy took " + damage + " damage.");
         health -= damage;
         if (health <= 0)
         {
-            Debug.Log("Enemy died.");
             Death();
         }
     }

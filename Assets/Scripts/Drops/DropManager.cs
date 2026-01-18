@@ -4,27 +4,27 @@ using UnityEngine.Pool;
 public class DropManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private Hp HP;
+    [SerializeField] private XP XP;
     [SerializeField] private Coins coin;
     [SerializeField] private Chest chest;
     [Header("Setting")]
     [SerializeField][Range(0,100)] private int coinDropChance;
     [SerializeField][Range(0,100)] private int chestDropChance;
 
-    private ObjectPool<Hp> hpPool; 
+    private ObjectPool<XP> XPPool; 
     private ObjectPool<Coins> coinPool; 
     void Start()
     {
         Enemy.onDying += Drop;
-        hpPool = new ObjectPool<Hp>(hpCreateFunc,hpActionOnGet,hpActionOnRelease,hpActionOnDestroy);
+        XPPool = new ObjectPool<XP>(XPCreateFunc,XPActionOnGet,XPActionOnRelease,XPActionOnDestroy);
         coinPool = new ObjectPool<Coins>(coinCreateFunc,coinActionOnGet,coinActionOnRelease,coinActionOnDestroy);
-        Hp.onCollected += ReleaseHp;
+        XP.onCollected += ReleaseXP;
         Coins.onCollected += ReleaseCoins;
     }
-    private Hp hpCreateFunc() =>Instantiate(HP, transform);
-    private void hpActionOnGet(Hp hp) => hp.gameObject.SetActive(true);
-    private void hpActionOnRelease(Hp hp) => hp.gameObject.SetActive(false);
-    private void hpActionOnDestroy(Hp hp) => Destroy(hp.gameObject);
+    private XP XPCreateFunc() =>Instantiate(XP, transform);
+    private void XPActionOnGet(XP XP) => XP.gameObject.SetActive(true);
+    private void XPActionOnRelease(XP XP) => XP.gameObject.SetActive(false);
+    private void XPActionOnDestroy(XP XP) => Destroy(XP.gameObject);
     private Coins coinCreateFunc() =>Instantiate(coin, transform);
     private void coinActionOnGet(Coins Coin) => Coin.gameObject.SetActive(true);
     private void coinActionOnRelease(Coins Coin) => Coin.gameObject.SetActive(false);
@@ -32,14 +32,14 @@ public class DropManager : MonoBehaviour
     void OnDestroy()
     {
         Enemy.onDying -=Drop;
-        Hp.onCollected -= ReleaseHp;
+        XP.onCollected -= ReleaseXP;
         Coins.onCollected -= ReleaseCoins;
     }
     private void Drop(Vector2 enemyPos)
     {
         bool shouldDropCoin = Random.Range(0,101) <= coinDropChance;
 
-        Dropables gojb = shouldDropCoin ? coinPool.Get() : hpPool.Get();
+        Dropables gojb = shouldDropCoin ? coinPool.Get() : XPPool.Get();
         gojb.transform.position = enemyPos;
 
         TryDropChest(enemyPos);
@@ -52,6 +52,6 @@ public class DropManager : MonoBehaviour
 
         Instantiate(chest,enemyPos,Quaternion.identity,transform);
     }
-    private void ReleaseHp(Hp hp) => hpPool.Release(hp);
+    private void ReleaseXP(XP XP) => XPPool.Release(XP);
     private void ReleaseCoins(Coins Coins) => coinPool.Release(Coins);
 }

@@ -8,17 +8,24 @@ public class Player : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float MaxHealth = 100f;
+    public static Player instance;
+    private PlayerLevel playerLevel;
     private float health ;
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private Collider2D playerCollider;
+
     void Start()
     {
         health = MaxHealth;
         healthBar.value = 1;
         hpText.text = health.ToString() + " / " + MaxHealth.ToString();
+        playerLevel = GetComponent<PlayerLevel>();
     }
-
+    void Awake()
+    {
+        instance = this;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,5 +53,9 @@ public class Player : MonoBehaviour
     public Vector2 getCenter()
     {
         return (Vector2)transform.position + playerCollider.offset;
+    }
+    public bool hasLevelUP()
+    {
+        return playerLevel.hasLevelUP();
     }
 }
