@@ -1,4 +1,5 @@
 using System;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class WavesTransManager : MonoBehaviour,IGameStateListener
 {
     [Header("Refs")]
-    [SerializeField] private Button[] upgrades;
+    [SerializeField] private Upgrades[] upgrades;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,12 +28,73 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
                 break;
         }    
     }
-
+    [Button]
     private void Configure()
     {
         for (int i = 0; i < upgrades.Length; i++)
         {
-            upgrades[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Upgrade " + i;
+            int randomIndex = UnityEngine.Random.Range(0,Enum.GetValues(typeof(Stats)).Length);
+            Stats stats = (Stats) Enum.GetValues(typeof(Stats)).GetValue(randomIndex);
+            string randomUpg = Enums.FormatStatName(stats);
+
+            string buttonString;
+            Action action = GetPerformedAction(stats,out buttonString);
+
+            upgrades[i].configure(null,randomUpg,buttonString);
+            upgrades[i].button.onClick.RemoveAllListeners();
+            upgrades[i].button.onClick.AddListener(() => action?.Invoke());
         }
+    }
+    private Action GetPerformedAction(Stats stats,out string buttonString)
+    {
+        buttonString = "";
+        float value;
+        value = UnityEngine.Random.Range(1,10);
+
+        buttonString = "+ " + value.ToString() +"%"; 
+
+        switch (stats)
+        {
+            case Stats.Attack:
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.AttackSpeed :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.CritChance :
+                value = UnityEngine.Random.Range(1f,2f);
+                buttonString = "+ " + value.ToString("F2") + "x";
+                break;
+            case Stats.CritDamage :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.MoveSpeed :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.MaxHp :
+                value = UnityEngine.Random.Range(1,5);
+                buttonString = "+ " + value;
+                break;
+            case Stats.Range :
+                value = UnityEngine.Random.Range(1f,5f);
+                buttonString = "+ " + value.ToString("F2");
+                break;
+            case Stats.HpRecoveryRate :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.Armor :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.Luck :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.Dodge :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+            case Stats.LifeSteal :
+                value = UnityEngine.Random.Range(1,10);
+                break;
+        }
+        return ()=> Debug.Log("Did");
     }
 }

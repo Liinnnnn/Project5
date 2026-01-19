@@ -33,9 +33,13 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.SHOP);
     }
-     public void openWeapon()
+    public void openWeapon()
     {
         SetGameState(GameState.WEAPONCHOSE);
+    }
+    public void openUpgrade()
+    {
+        SetGameState(GameState.WAVETRANS);
     }
     public void SetGameState(GameState gameState)
     {
