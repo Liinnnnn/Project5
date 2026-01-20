@@ -87,7 +87,7 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
                 buttonString = "+ " + value;
                 break;
             case Stats.Range :
-                value = UnityEngine.Random.Range(1f,5f);
+                value = UnityEngine.Random.Range(0f,1f);
                 buttonString = "+ " + value.ToString("F2");
                 break;
             case Stats.HpRecoveryRate :

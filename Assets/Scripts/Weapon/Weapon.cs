@@ -1,15 +1,21 @@
+using System;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour,IPlayerStats
 {
+    [field: SerializeField] public WeaponDataSO weaponData{get;private set;}
     protected Animator animator;
     [Header("Weapon Properties")]
-    [SerializeField] protected float damage = 10f;
+    [SerializeField] protected float damage;
+    [SerializeField] protected float critChance;
+    [SerializeField] protected float critDamageMult;
     [SerializeField] protected float range = 10f;
     [SerializeField] protected float attackDelay = 2f; 
     protected float attackTimer ;
     [SerializeField] protected LayerMask enemyLayer;
     [SerializeField] protected float aimLerp;
+    [Header("LEVEL")]
+    [field: SerializeField] public float level {get;set;}
 
     void Start()
     {
@@ -49,9 +55,10 @@ public abstract class Weapon : MonoBehaviour
     protected float getDamage(out bool isCrits)
     {
         isCrits = false;
-        if (Random.Range(0,100)<=50)
+        if (UnityEngine.Random.Range(0f,100f) <= critChance)
         {
-            return damage * 2;
+            Debug.Log("Crits" + damage * critDamageMult);
+            return damage * critDamageMult;
         }
         return damage;
     }
@@ -59,5 +66,21 @@ public abstract class Weapon : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+    public abstract void updateStat(PlayerStatsManager playerStatsManager);
+    protected void ConfigureStats()
+    {
+        float multiplier = 1 + level/3;
+        damage = weaponData.getStats(Stats.Attack ) * multiplier;
+        attackDelay = 1f / (weaponData.getStats(Stats.AttackSpeed) * multiplier);
+        critChance = weaponData.getStats(Stats.CritChance) * multiplier;
+        critDamageMult = weaponData.getStats(Stats.CritDamage) * multiplier;
+        if(weaponData.weapon.GetType() == typeof(RangedWeapon))
+        {
+            range = weaponData.getStats(Stats.Range) * multiplier;
+        }else
+        {
+            range = weaponData.getStats(Stats.Range);
+        }
     }
 }

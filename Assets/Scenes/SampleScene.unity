@@ -11567,9 +11567,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1261445116}
     m_Modifications:
+    - target: {fileID: 1063698128666733438, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: range
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063698128666733438, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063698128666733438, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: baseDamage
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063698128666733438, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: attackDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063698128666733438, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: critDamageMult
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063698128666733438, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: <weaponData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b08a6b906d9e7404a8da9f115254a27e, type: 2}
     - target: {fileID: 2568074845646048592, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3879918511560876273, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
       propertyPath: hpText
@@ -11579,6 +11603,26 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1234807269}
+    - target: {fileID: 4740745400161588474, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: range
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740745400161588474, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740745400161588474, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: baseDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740745400161588474, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: attackDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740745400161588474, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
+      propertyPath: <weaponData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c3c47a21a3252d4d82b94cd1afcdb7e, type: 2}
     - target: {fileID: 7097289371573466246, guid: bdba1722a3e25e4449a9c8e907cf47f7, type: 3}
       propertyPath: m_Name
       value: Player
