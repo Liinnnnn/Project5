@@ -161,13 +161,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1eaf32d9908d44abcf199b5146e7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  <weaponData>k__BackingField: {fileID: 11400000, guid: 8c3c47a21a3252d4d82b94cd1afcdb7e, type: 2}
   damage: 10
+  critChance: 0
+  critDamageMult: 0
   range: 2
   attackDelay: 2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   aimLerp: 12
+  <level>k__BackingField: 0
   HitPoint: {fileID: 8601485716188135095}
   weaponCollider: {fileID: 482188829218705591}
 --- !u!95 &8512180405799752765

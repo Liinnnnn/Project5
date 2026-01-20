@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600354ba42bb2c74aa2f0eccc5cc18ee, type: 3}
+  m_Name: Level Pallete Data
+  m_EditorClassIdentifier: Assembly-CSharp::PalleteSO
+  <lvColor>k__BackingField:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.5528892, g: 1, b: 0.49551648, a: 1}
+  - {r: 0.5941528, g: 0.6656984, b: 1, a: 1}
+  - {r: 1, g: 0.92844236, b: 0.37894642, a: 1}
+  <lvOulineColor>k__BackingField:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0.5529412, g: 1, b: 0.49411765, a: 0.5372549}
+  - {r: 0.59607846, g: 0.6666667, b: 1, a: 0.5294118}
+  - {r: 1, g: 0.92941177, b: 0.38039216, a: 0.58431375}

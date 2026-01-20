@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -43,7 +44,10 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             StartCoroutine(StartNextWave());
         }
     }
-
+    void OnEnable()
+    {
+        GameManager.instance.SetGameState(GameState.WAVETRANS); 
+    }
     private void StartWave(int v)
     {
         localCounter.Clear();
@@ -51,7 +55,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
         {
             localCounter.Add(1);
         }
-
+        
         timer = 0;
         isTimerOn = true;
     }
@@ -108,11 +112,13 @@ public class WaveManager : MonoBehaviour,IGameStateListener
         switch (gameState)
         {
             case GameState.GAME :
+                
                 StartWave(currentWave);
                 break;
             case GameState.WAVETRANS :
             case GameState.SHOP :
             case GameState.MENU :
+            case GameState.COMPLETE :
                 GameObject[] e = GameObject.FindGameObjectsWithTag("Enemy");
                 if (e!=null)
                 {

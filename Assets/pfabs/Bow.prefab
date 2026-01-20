@@ -169,13 +169,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e760215755fe3478d78bba7f32f6ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  <weaponData>k__BackingField: {fileID: 11400000, guid: b08a6b906d9e7404a8da9f115254a27e, type: 2}
   damage: 10
+  critChance: 0
+  critDamageMult: 0
   range: 5.59
   attackDelay: 2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   aimLerp: 8
+  <level>k__BackingField: 0
   bulletPrebs: {fileID: 2474514012140219492, guid: 92f8032569927974cbf6581350b27125, type: 3}
   shootPoint: {fileID: 4071706684836286003}
 --- !u!1 &7327302886687217118

@@ -70,7 +70,7 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     public abstract void updateStat(PlayerStatsManager playerStatsManager);
     protected void ConfigureStats()
     {
-        float multiplier = 1 + level/3;
+        float multiplier = 1 + level/10;
         damage = weaponData.getStats(Stats.Attack ) * multiplier;
         attackDelay = 1f / (weaponData.getStats(Stats.AttackSpeed) * multiplier);
         critChance = weaponData.getStats(Stats.CritChance) * multiplier;
