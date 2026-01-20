@@ -1,16 +1,24 @@
 using System;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IPlayerStats
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private float MaxHealth = 100f;
+    [SerializeField] private float baseHp = 100f;
+    private float MaxHealth = 100f;
+    private float health ; 
+    [SerializeField] private float armor;
+    [SerializeField] private float lifeSteal;
+    [SerializeField] private float dodge;
+    [SerializeField] private float hpRecoverySpd;
+    [SerializeField] private float hpRecoveryDuration;
+    [SerializeField] private float hpRecoveryTimer;
     public static Player instance;
     private PlayerLevel playerLevel;
-    private float health ;
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private Collider2D playerCollider;
@@ -19,8 +27,8 @@ public class Player : MonoBehaviour
     {
         health = MaxHealth;
         healthBar.value = 1;
-        hpText.text = health.ToString() + " / " + MaxHealth.ToString();
         playerLevel = GetComponent<PlayerLevel>();
+        Enemy.onTakeDamage += stealHp;
     }
     void Awake()
     {
@@ -29,12 +37,45 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(health < MaxHealth)
+        {
+            RecoverHP();
+        }
+    }
+
+    private void RecoverHP()
+    {
+        hpRecoveryTimer += Time.deltaTime;
+        if(hpRecoveryTimer >= hpRecoveryDuration)
+        {
+            hpRecoveryTimer = 0;
+            float healed = Mathf.Min(0.1f, MaxHealth - health);
+            health += healed;
+            changeHealthBar();
+        }
+    }
+
+    private void stealHp(float dam,Vector2 enemypos)
+    {
+        if(health >= MaxHealth)
+        {
+            return;
+        }
+        float stolenValue = dam * lifeSteal;
+        float healthAdd = MathF.Min(stolenValue,MaxHealth - health);
+
+        health += healthAdd;
+        changeHealthBar();
     }
     public void TakeDamage(float damage)
     {
+        if (shouldDodge()){
+            Debug.Log("Dodge");
+            return;
+        }
         Debug.Log("Player took " + damage + " damage.");
-        health -= damage;
+        float realDamage = damage * Mathf.Clamp(1-(armor/1000),0,1000 );
+        health -= realDamage;
         changeHealthBar();
         if (health <= 0)
         {
@@ -57,5 +98,24 @@ public class Player : MonoBehaviour
     public bool hasLevelUP()
     {
         return playerLevel.hasLevelUP();
+    }
+    public bool shouldDodge()
+    {
+        return UnityEngine.Random.Range(0f,100f) < dodge;
+    }
+    public void updateStat(PlayerStatsManager playerStatsManager)
+    {
+        float addedHp = playerStatsManager.GetStatsValue(Stats.MaxHp);
+        MaxHealth = baseHp + addedHp;
+
+        armor = playerStatsManager.GetStatsValue(Stats.Armor);
+
+        health = MaxHealth;
+        changeHealthBar();
+
+        lifeSteal = playerStatsManager.GetStatsValue(Stats.LifeSteal) / 100;
+        dodge = playerStatsManager.GetStatsValue(Stats.Dodge);
+        hpRecoverySpd = Mathf.Max(0.0001f,playerStatsManager.GetStatsValue(Stats.HpRecoveryRate));
+        hpRecoveryDuration = 1f / hpRecoverySpd;
     }
 }

@@ -8,6 +8,8 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
 {
     [Header("Refs")]
     [SerializeField] private Upgrades[] upgrades;
+    [SerializeField] private PlayerStatsManager statsManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,7 +45,13 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
             upgrades[i].configure(null,randomUpg,buttonString);
             upgrades[i].button.onClick.RemoveAllListeners();
             upgrades[i].button.onClick.AddListener(() => action?.Invoke());
+            upgrades[i].button.onClick.AddListener(() => BonusSelectedCallback());
+
         }
+    }
+    private void BonusSelectedCallback()
+    {
+        GameManager.instance.WaveCompleteCallBack();
     }
     private Action GetPerformedAction(Stats stats,out string buttonString)
     {
@@ -51,15 +59,16 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
         float value;
         value = UnityEngine.Random.Range(1,10);
 
-        buttonString = "+ " + value.ToString() +"%"; 
 
         switch (stats)
         {
             case Stats.Attack:
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%"; 
                 break;
             case Stats.AttackSpeed :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.CritChance :
                 value = UnityEngine.Random.Range(1f,2f);
@@ -67,9 +76,11 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
                 break;
             case Stats.CritDamage :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.MoveSpeed :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.MaxHp :
                 value = UnityEngine.Random.Range(1,5);
@@ -81,20 +92,25 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
                 break;
             case Stats.HpRecoveryRate :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.Armor :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.Luck :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.Dodge :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
             case Stats.LifeSteal :
                 value = UnityEngine.Random.Range(1,10);
+                buttonString = "+ " + value.ToString() +"%";
                 break;
         }
-        return ()=> Debug.Log("Did");
+        return ()=> statsManager.AddStats(stats,value) ;
     }
 }

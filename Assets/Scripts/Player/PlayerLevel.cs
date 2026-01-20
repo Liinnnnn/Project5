@@ -16,6 +16,7 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lv;
     void Start()
     {
+        xpBar.value = 0;
         UpdateXP();
         UpdateSlider();
         XP.onCollected +=getXP;

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1ad74ae09bfb741a06739483f14ce2, type: 3}
+  m_Name: PlayerDataSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
+  <PName>k__BackingField: C1
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 4d06dd4e23304054299cf6a6cd3135bf, type: 3}
+  <price>k__BackingField: 0
+  Attack: 0
+  AttackSpeed: 0
+  CritChance: 0
+  CritDamage: 0
+  MoveSpeed: 5
+  MaxHp: 100
+  Range: 0
+  HpRecoveryRate: 10
+  Armor: 100
+  Luck: 0
+  Dodge: 1
+  LifeSteal: 1

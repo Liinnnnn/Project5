@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem deathEffect;
     private float health;
     public static event Action<Vector2> onDying;
+    public static event Action<float,Vector2> onTakeDamage;
     void Start()
     {
         health = MaxHealth;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
+        onTakeDamage?.Invoke(damage,transform.position);
     }
     
     private void Death()
