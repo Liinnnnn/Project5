@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,19 +9,28 @@ public class WeaponSelectionContainer : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Image icon ;
     [SerializeField] private TextMeshProUGUI Wname ;
-    [SerializeField] private TextMeshProUGUI LV ;
     [field : SerializeField] public Button button{get;private set;}
+    [Header("Stats")]
+    [SerializeField] private Transform statsContainerP;
     [Header("Color")]
     [SerializeField] private Image levelImage;
 
-    public void Configure(Sprite sprite, string name,int level)
+    public void Configure(Sprite sprite, string name,int level,WeaponDataSO w)
     {
+        Dictionary<Stats,float> calc = WeaponStatsCalculated.GetStats(w,level);
+        configureStatsContainer(calc);
+        
         icon.sprite =sprite;
-        Wname.text = name;
-        LV.text = "Level " + level.ToString();
+        Wname.text = name + " " + level;
         Color imgColor = ColorHolder.getColor(level);
-        Debug.Log(level + " IMG");
+        Wname.color = imgColor;
         levelImage.color = imgColor;
+
+    }
+
+    private void configureStatsContainer(Dictionary<Stats,float> calc)
+    {
+        StatsContainerManager.GenerateStatsContainer(calc,statsContainerP);
     }
 
     public void DeSelect()

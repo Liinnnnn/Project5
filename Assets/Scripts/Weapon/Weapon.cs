@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour,IPlayerStats
@@ -70,18 +71,15 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     public abstract void updateStat(PlayerStatsManager playerStatsManager);
     protected void ConfigureStats()
     {
-        float multiplier = 1 + (float)Level/5;
-        damage = weaponData.getStats(Stats.Attack ) * multiplier;
-        attackDelay = 1f / (weaponData.getStats(Stats.AttackSpeed) * multiplier);
-        critChance = weaponData.getStats(Stats.CritChance) * multiplier;
-        critDamageMult = weaponData.getStats(Stats.CritDamage) * multiplier;
-        if(weaponData.weapon.GetType() == typeof(RangedWeapon))
-        {
-            range = weaponData.getStats(Stats.Range) * multiplier;
-        }else
-        {
-            range = weaponData.getStats(Stats.Range);
-        }
+        Dictionary<Stats,float> calc = WeaponStatsCalculated.GetStats(weaponData,Level);
+
+        damage = calc[Stats.Attack];
+        attackDelay = 1f / calc[Stats.AttackSpeed];
+        critChance = calc[Stats.CritChance];
+        critDamageMult = calc[Stats.CritDamage];
+    
+        range = calc[Stats.Range];
+
         Debug.Log(Level);
     }
 

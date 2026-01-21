@@ -2,15 +2,18 @@ using System;
 using System.ComponentModel;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSelectionManager : MonoBehaviour,IGameStateListener
 {
     [Header("Settings")]
     [SerializeField] private Transform containerP;
     [SerializeField] private WeaponSelectionContainer prefabs; 
-    [Header("Settings")]
+    [Header("Ref")]
     [SerializeField] private WeaponDataSO[] dataSOs; 
     [SerializeField] private PlayerWeapon playerWeapon; 
+    [SerializeField] private Button Next; 
+
     private WeaponDataSO selectedWeapon; 
     private int initialLevel;
     public void GameStateChangeCallBack(GameState gameState)
@@ -46,9 +49,10 @@ public class WeaponSelectionManager : MonoBehaviour,IGameStateListener
 
         int level = UnityEngine.Random.Range(0,4);
         int capturelv = level;
-        container.Configure(weaponDataSO.Sprite,weaponDataSO.WeaponName,capturelv);
+        container.Configure(weaponDataSO.Sprite,weaponDataSO.WeaponName,capturelv,weaponDataSO);
         container.button.onClick.RemoveAllListeners();
         container.button.onClick.AddListener(()=>WeaponSelectionCallback(container,weaponDataSO,capturelv));
+        container.button.onClick.AddListener(()=> Next.interactable = true);
     }
     private void WeaponSelectionCallback(WeaponSelectionContainer w,WeaponDataSO d,int lv)
     {
