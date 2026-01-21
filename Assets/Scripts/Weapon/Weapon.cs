@@ -15,7 +15,7 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     [SerializeField] protected LayerMask enemyLayer;
     [SerializeField] protected float aimLerp;
     [Header("LEVEL")]
-    [field: SerializeField] public float level {get;set;}
+    [field: SerializeField] public float Level {get;private set;}
 
     void Start()
     {
@@ -70,7 +70,7 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     public abstract void updateStat(PlayerStatsManager playerStatsManager);
     protected void ConfigureStats()
     {
-        float multiplier = 1 + level/10;
+        float multiplier = 1 + (float)Level/5;
         damage = weaponData.getStats(Stats.Attack ) * multiplier;
         attackDelay = 1f / (weaponData.getStats(Stats.AttackSpeed) * multiplier);
         critChance = weaponData.getStats(Stats.CritChance) * multiplier;
@@ -82,5 +82,12 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
         {
             range = weaponData.getStats(Stats.Range);
         }
+        Debug.Log(Level);
+    }
+
+    public void UpgradeTo(int lv)
+    {
+        Level = lv;
+        ConfigureStats();
     }
 }

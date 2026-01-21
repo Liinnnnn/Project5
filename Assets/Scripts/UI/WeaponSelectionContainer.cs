@@ -18,7 +18,7 @@ public class WeaponSelectionContainer : MonoBehaviour
         Wname.text = name;
         LV.text = "Level " + level.ToString();
         Color imgColor = ColorHolder.getColor(level);
-        Debug.Log(imgColor);
+        Debug.Log(level + " IMG");
         levelImage.color = imgColor;
     }
 

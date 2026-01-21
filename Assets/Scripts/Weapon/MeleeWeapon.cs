@@ -99,9 +99,9 @@ public class MeleeWeapon : Weapon
         ConfigureStats();
 
         attackDelay /= 1 + (playerStatsManager.GetStatsValue(Stats.AttackSpeed) / 100); 
-        critChance = critChance * (1 + playerStatsManager.GetStatsValue(Stats.CritChance)/100);
-        critDamageMult += playerStatsManager.GetStatsValue(Stats.CritDamage)/100;
-        damage = damage * (1 + playerStatsManager.GetStatsValue(Stats.Attack)/100);
+        critChance += playerStatsManager.GetStatsValue(Stats.CritChance)/100;
+        critDamageMult += 1 + playerStatsManager.GetStatsValue(Stats.CritDamage)/100;
+        damage += damage * (1 + playerStatsManager.GetStatsValue(Stats.Attack)/100);
         Debug.Log(damage);
     }
 }

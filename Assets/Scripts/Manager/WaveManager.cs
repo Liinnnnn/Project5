@@ -44,10 +44,6 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             StartCoroutine(StartNextWave());
         }
     }
-    void OnEnable()
-    {
-        GameManager.instance.SetGameState(GameState.WAVETRANS); 
-    }
     private void StartWave(int v)
     {
         localCounter.Clear();
@@ -114,6 +110,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             case GameState.GAME :
                 
                 StartWave(currentWave);
+                Time.timeScale = 1;
                 break;
             case GameState.WAVETRANS :
             case GameState.SHOP :
@@ -127,6 +124,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
                         Destroy(obj);
                     }
                 }
+                Time.timeScale = 0;
                 break;
         }
     }

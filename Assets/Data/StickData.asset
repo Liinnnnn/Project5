@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: StickData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataSO
   <WeaponName>k__BackingField: Stick
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 68cdb2f601bd9d64abe72371325bbf93, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 64d4f52ac060b7f4e8e943c889ed39a9, type: 3}
   <price>k__BackingField: 100
   <weapon>k__BackingField: {fileID: 8220320372266840735, guid: 6c8fd744d0d692f4a864cd9bdb67d4fa, type: 3}
   Attack: 10
-  AttackSpeed: 1
+  AttackSpeed: 0.75
   CritChance: 5
-  Range: 2.5
+  Range: 2
   CritDamage: 2

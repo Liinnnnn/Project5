@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8601485716188135095}
-  - component: {fileID: 482188829218705591}
+  - component: {fileID: 5124672997314569668}
   m_Layer: 0
   m_Name: HitPoint
   m_TagString: Untagged
@@ -58,13 +58,13 @@ Transform:
   m_GameObject: {fileID: 4098944986993405371}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.106, y: 1.09, z: 0}
+  m_LocalPosition: {x: -0.01, y: 1.059, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7285217506350979867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &482188829218705591
+--- !u!60 &5124672997314569668
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,10 +110,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.02361748, y: 0.117259145}
-      - {x: -1.1793561, y: -1.0396147}
-      - {x: -1.1270442, y: -1.1523052}
-      - {x: 0.09182453, y: 0.009970248}
+    - - {x: -0.118176244, y: 0.131814}
+      - {x: -0.22569764, y: 0.039929926}
+      - {x: -0.045803607, y: -1.0527183}
+      - {x: 0.08247918, y: -1.0527184}
+      - {x: 0.2419802, y: 0.043544725}
+      - {x: 0.1727221, y: 0.14147258}
   m_UseDelaunayMesh: 1
 --- !u!1 &4970711260804740266
 GameObject:
@@ -141,9 +143,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4970711260804740266}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.004, y: 0.019, z: 0}
-  m_LocalScale: {x: 0.76, y: 0.61, z: 0.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4863883085231755851}
@@ -163,17 +165,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   <weaponData>k__BackingField: {fileID: 11400000, guid: 8c3c47a21a3252d4d82b94cd1afcdb7e, type: 2}
   damage: 10
-  critChance: 0
-  critDamageMult: 0
+  critChance: 5.5
+  critDamageMult: 2.2
   range: 2
-  attackDelay: 2
+  attackDelay: 1.2121211
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   aimLerp: 12
-  <level>k__BackingField: 0
+  <level>k__BackingField: 1
   HitPoint: {fileID: 8601485716188135095}
-  weaponCollider: {fileID: 482188829218705591}
+  weaponCollider: {fileID: 5124672997314569668}
 --- !u!95 &8512180405799752765
 Animator:
   serializedVersion: 7
@@ -222,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 5323511825575584431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.05, y: -0.04, z: 0}
+  m_LocalPosition: {x: 0.41, y: -0.281, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -278,7 +280,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 68cdb2f601bd9d64abe72371325bbf93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64d4f52ac060b7f4e8e943c889ed39a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
