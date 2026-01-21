@@ -3,6 +3,7 @@ using UnityEngine;
 public class ResourcesManager : MonoBehaviour
 {
     const string statsIconDataPath = "Data/Stats Icons";
+    const string ObjectDataPath = "Data/Obj/";
     private static StatsIcon[] icon ;
     public static Sprite GetStatsIcon(Stats stats)
     {
@@ -20,4 +21,14 @@ public class ResourcesManager : MonoBehaviour
         }
         return null;
     } 
+    private static ObjectDataSO[] objectData;
+    public static ObjectDataSO[] objectDataSOs
+    {
+        get{
+            if(objectData == null)
+                return objectData= Resources.LoadAll<ObjectDataSO>(ObjectDataPath);
+            return objectData;
+            }
+        private set{}
+    }
 }

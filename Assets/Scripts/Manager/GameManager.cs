@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompleteCallBack()
     {
-        if (Player.instance.hasLevelUP())
+        if (Player.instance.hasLevelUP() || WavesTransManager.instance.HasCollectedChest())
         {
             SetGameState(GameState.WAVETRANS);
         }

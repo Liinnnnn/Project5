@@ -8,6 +8,7 @@ public class PlayerStatsManager : MonoBehaviour
     [SerializeField] private PlayerDataSO playerDataSO;
     private Dictionary<Stats,float> statsData = new Dictionary<Stats, float>();
     private Dictionary<Stats,float> playerStats = new Dictionary<Stats, float>();
+    private Dictionary<Stats,float> objectStats = new Dictionary<Stats, float>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,8 @@ public class PlayerStatsManager : MonoBehaviour
         playerStats = playerDataSO.BaseStat; 
         foreach(KeyValuePair<Stats,float> k in playerStats)
         {
-            statsData.Add(k.Key,k.Value);
+            statsData.Add(k.Key,0);
+            objectStats.Add(k.Key,0);
         }
     }
     // Update is called once per frame
@@ -52,6 +54,16 @@ public class PlayerStatsManager : MonoBehaviour
 
     public float GetStatsValue(Stats stats)
     {
-        return statsData[stats];
+        return playerStats[stats] + statsData[stats] + objectStats[stats];
+    }
+
+    public void AddObject(Dictionary<Stats,float> objStats)
+    {
+        foreach (KeyValuePair<Stats,float> k in objStats)
+        {
+            objectStats[k.Key] += k.Value;
+        }
+        updatePlayerStat();
+
     }
 }

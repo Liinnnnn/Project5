@@ -2,14 +2,22 @@ using System;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class WavesTransManager : MonoBehaviour,IGameStateListener
 {
     [Header("Refs")]
     [SerializeField] private Upgrades[] upgrades;
+    [SerializeField] private GameObject upgradesContainer;
     [SerializeField] private PlayerStatsManager statsManager;
-
+    [SerializeField] private PlayerObject playerObject;
+    [Header("Chest Related")]
+    private int chestCollected;
+    [SerializeField] private ChestContainerUI chestContainer;
+    [SerializeField] private Transform chestContainerParent;
+    public static WavesTransManager instance;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,18 +29,30 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
     {
         
     }
+    void Awake()
+    {
+        instance = this;
+        Chest.onCollected += ChestCollected;
+    }
+
+
     public void GameStateChangeCallBack(GameState gameState)
     {
         switch (gameState)
         {
             case GameState.WAVETRANS :
-                Configure();
+                TryOpenChest();
                 break;
         }    
     }
+
+
     [Button]
     private void Configure()
     {
+        chestContainerParent.gameObject.SetActive(false);
+        upgradesContainer.SetActive(true);
+
         for (int i = 0; i < upgrades.Length; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0,Enum.GetValues(typeof(Stats)).Length);
@@ -112,5 +132,57 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
                 break;
         }
         return ()=> statsManager.AddStats(stats,value) ;
+    }
+    private void ChestCollected(Chest chest)
+    {   
+        chestCollected++;
+        Debug.Log(chestCollected);
+    }
+    public bool HasCollectedChest()
+    {
+        return chestCollected > 0;
+    }
+    private void TryOpenChest()
+    {
+        if(chestCollected > 0)
+        {
+            foreach (Transform child in chestContainerParent) {
+                Destroy(child.gameObject);
+            } 
+            ShowObject();
+        }else
+        {
+            Configure();
+        }
+    }
+
+    private void ShowObject()
+    {
+        chestCollected--;
+        upgradesContainer.SetActive(false);
+        chestContainerParent.gameObject.SetActive(true);
+
+        ObjectDataSO[] objectDataSO = ResourcesManager.objectDataSOs;
+        ObjectDataSO randomObj = objectDataSO[UnityEngine.Random.Range(0,objectDataSO.Length)];
+
+        ChestContainerUI chestContainerUI = Instantiate(chestContainer,chestContainerParent);
+        chestContainerUI.Configure(randomObj);
+
+        chestContainerUI.TakeButton.onClick.RemoveAllListeners();
+        
+        chestContainerUI.TakeButton.onClick.AddListener(()=> TakeButtonCallback(randomObj));
+        chestContainerUI.RecycleButton.onClick.AddListener(()=> RecycleButtonCallback(randomObj));
+    }
+
+    private void RecycleButtonCallback(ObjectDataSO randomObj)
+    {
+        
+    }
+
+    private void TakeButtonCallback(ObjectDataSO randomObj)
+    {
+        Debug.Log("clickes");
+        playerObject.AddObject(randomObj);
+        TryOpenChest();
     }
 }

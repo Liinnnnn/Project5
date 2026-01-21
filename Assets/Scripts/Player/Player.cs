@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour,IPlayerStats
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private float baseHp = 100f;
-    private float MaxHealth = 100f;
+    [SerializeField] private float baseHp;
+    private float MaxHealth;
     private float health ; 
     [SerializeField] private float armor;
     [SerializeField] private float lifeSteal;

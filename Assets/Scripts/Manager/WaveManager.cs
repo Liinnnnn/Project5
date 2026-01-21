@@ -41,7 +41,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             ManageCurrentWave();
         }else
         {
-            StartCoroutine(StartNextWave());
+            StartNextWave();
         }
     }
     private void StartWave(int v)
@@ -79,7 +79,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
         }
         timer += Time.deltaTime;
     }
-    private IEnumerator StartNextWave()
+    private void StartNextWave()
     {
         isTimerOn =false;
         currentWave++;
@@ -92,7 +92,6 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             GameManager.instance.WaveCompleteCallBack();
             // StartCoroutine(StartWave(currentWave));
         } 
-        yield return new WaitForSeconds(5f);
     }
 
     private Vector2 SpawnPosition()
