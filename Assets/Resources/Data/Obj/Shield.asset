@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
   <Name>k__BackingField: Shield
   <icon>k__BackingField: {fileID: 3502715887467967171, guid: 855db66550ccd0947b038feeb4379597, type: 3}
-  <Price>k__BackingField: 200
+  <sellPrice>k__BackingField: 200
   <rarity>k__BackingField: 2
   statDatas:
   - stats: 0

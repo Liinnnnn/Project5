@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
   <Name>k__BackingField: Fire
   <icon>k__BackingField: {fileID: 21300000, guid: a14f8921c38a1f246b886de472c04973, type: 3}
-  <Price>k__BackingField: 100
+  <sellPrice>k__BackingField: 100
   <rarity>k__BackingField: 1
   statDatas:
   - stats: 5

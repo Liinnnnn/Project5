@@ -9,6 +9,7 @@ public class ChestContainerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ObjectName ;
     [field : SerializeField] public Button TakeButton{get;private set;}
     [field : SerializeField] public Button RecycleButton{get;private set;}
+    [field : SerializeField] public TextMeshProUGUI RecycleTextMeshProUGUI{get;private set;}
     [Header("Stats")]
     [SerializeField] private Transform statsContainerP;
     [Header("Color")]
@@ -24,6 +25,7 @@ public class ChestContainerUI : MonoBehaviour
         Color imgColor = ColorHolder.getColor(w.rarity);
         ObjectName.color = imgColor;
         rarityImage.color = imgColor;
+        RecycleTextMeshProUGUI.text = w.sellPrice.ToString();
         configureStatsContainer(w.BaseStat);
     }
 

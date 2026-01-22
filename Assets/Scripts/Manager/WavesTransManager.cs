@@ -61,8 +61,8 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
 
             string buttonString;
             Action action = GetPerformedAction(stats,out buttonString);
-
-            upgrades[i].configure(null,randomUpg,buttonString);
+            Sprite upgradeIcon = ResourcesManager.GetStatsIcon(stats);
+            upgrades[i].configure(upgradeIcon,randomUpg,buttonString);
             upgrades[i].button.onClick.RemoveAllListeners();
             upgrades[i].button.onClick.AddListener(() => action?.Invoke());
             upgrades[i].button.onClick.AddListener(() => BonusSelectedCallback());
@@ -176,7 +176,8 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
 
     private void RecycleButtonCallback(ObjectDataSO randomObj)
     {
-        
+        CurrencyManager.instance.AddCurrency(randomObj.sellPrice);
+        TryOpenChest();
     }
 
     private void TakeButtonCallback(ObjectDataSO randomObj)

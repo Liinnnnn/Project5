@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class DropManager : MonoBehaviour
+public class DropManager : MonoBehaviour,IPlayerStats
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private XP XP;
     [SerializeField] private Coins coin;
     [SerializeField] private Chest chest;
     [Header("Setting")]
-    [SerializeField][Range(0,100)] private int coinDropChance;
-    [SerializeField][Range(0,100)] private int chestDropChance;
+    [SerializeField][Range(0,100)] private float coinDropChance;
+    [SerializeField][Range(0,100)] private float chestDropChance;
 
     private ObjectPool<XP> XPPool; 
     private ObjectPool<Coins> coinPool; 
@@ -37,7 +37,7 @@ public class DropManager : MonoBehaviour
     }
     private void Drop(Vector2 enemyPos)
     {
-        bool shouldDropCoin = Random.Range(0,101) <= coinDropChance;
+        bool shouldDropCoin = Random.Range(0f,101f) <= coinDropChance;
 
         Dropables gojb = shouldDropCoin ? coinPool.Get() : XPPool.Get();
         gojb.transform.position = enemyPos;
@@ -47,11 +47,18 @@ public class DropManager : MonoBehaviour
 
     private void TryDropChest(Vector2 enemyPos)
     {
-        bool shouldSpawnChest = Random.Range(0,101) <= chestDropChance;
+        bool shouldSpawnChest = Random.Range(0f,101f) <= chestDropChance;
         if(!shouldSpawnChest) return;
 
         Instantiate(chest,enemyPos,Quaternion.identity,transform);
     }
     private void ReleaseXP(XP XP) => XPPool.Release(XP);
     private void ReleaseCoins(Coins Coins) => coinPool.Release(Coins);
+
+    public void updateStat(PlayerStatsManager playerStatsManager)
+    {
+        float Luck = playerStatsManager.GetStatsValue(Stats.Luck)/100;
+        coinDropChance = coinDropChance * (1 + Luck);
+        chestDropChance = chestDropChance * (1 + Luck);
+    }
 }

@@ -7,7 +7,7 @@ public class ObjectDataSO : ScriptableObject
 {
     [field : SerializeField] public string Name {get;private set;}
     [field : SerializeField] public Sprite icon {get;private set;}
-    [field : SerializeField] public float Price {get;private set;}
+    [field : SerializeField] public int sellPrice {get;private set;}
     [field : Range(0,3)]
     [field : SerializeField] public int rarity {get;private set;}
     [SerializeField] private StatData[] statDatas;  

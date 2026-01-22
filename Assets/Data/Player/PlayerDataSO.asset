@@ -15,15 +15,15 @@ MonoBehaviour:
   <PName>k__BackingField: C1
   <Sprite>k__BackingField: {fileID: 21300000, guid: 4d06dd4e23304054299cf6a6cd3135bf, type: 3}
   <price>k__BackingField: 0
-  Attack: 100
+  Attack: 10
   AttackSpeed: 1
   CritChance: 1
   CritDamage: 1
   MoveSpeed: 5
   MaxHp: 100
   Range: 1
-  HpRecoveryRate: 10
-  Armor: 1000
-  Luck: 1
-  Dodge: 1
-  LifeSteal: 1
+  HpRecoveryRate: 0
+  Armor: 0
+  Luck: 0
+  Dodge: 0
+  LifeSteal: 0
