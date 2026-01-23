@@ -7,6 +7,7 @@ public class WeaponPosition : MonoBehaviour
     {
         w.UpgradeTo(lv);
         
+        weapon =w;
         Instantiate(w,transform);
 
         w.transform.localRotation = Quaternion.identity;

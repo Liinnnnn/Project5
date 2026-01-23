@@ -21,8 +21,9 @@ public class WeaponSelectionManager : MonoBehaviour,IGameStateListener
         switch (gameState)
         {
             case GameState.GAME :
+            case GameState.SHOP :
                 if(selectedWeapon == null) return;
-                playerWeapon.AddWeapon(selectedWeapon,initialLevel);
+                playerWeapon.tryAddWeapon(selectedWeapon,initialLevel);
                 selectedWeapon =null;
                 break;
             case GameState.WEAPONCHOSE :

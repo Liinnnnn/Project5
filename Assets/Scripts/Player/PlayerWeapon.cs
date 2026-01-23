@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    
     [SerializeField] private WeaponPosition[] WParents;
-    public void AddWeapon(WeaponDataSO w,int lv)
+    public bool tryAddWeapon(WeaponDataSO w,int lv)
     {
-        WParents[Random.Range(0,WParents.Length)].assignWeapon(w.weapon,lv);
-        Debug.Log(lv);
+        for (int i = 0; i < WParents.Length; i++)
+        {
+            if(WParents[i].weapon != null)
+            {
+                continue;
+            }
+            WParents[i].assignWeapon(w.weapon,lv);
+            return true;
+        }
+        return false;
     }
 }

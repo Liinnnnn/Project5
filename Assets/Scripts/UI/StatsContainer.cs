@@ -12,7 +12,7 @@ public class StatsContainer : MonoBehaviour
     {
         icon.sprite = i;
         StatsName.text = m;
-        StatsValue.text = v.ToString("F2");
+        StatsValue.text = v.ToString("F1");
 
         if (shouldUseColor)
         {
@@ -20,7 +20,7 @@ public class StatsContainer : MonoBehaviour
         }else
         {
             StatsValue.color = Color.white;
-            StatsValue.text = v.ToString("F2");
+            StatsValue.text = v.ToString("F1");
 
         }
     }
