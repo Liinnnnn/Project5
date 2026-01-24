@@ -22,6 +22,10 @@ public class StatsContainerManager : MonoBehaviour
     }
     public static void GenerateStatsContainer(Dictionary<Stats,float> statsDict , Transform parent)
     {
+        foreach (Transform child in parent)
+        {
+            Destroy(child.gameObject);
+        }
         instance.Generate(statsDict,parent);
     }
 }

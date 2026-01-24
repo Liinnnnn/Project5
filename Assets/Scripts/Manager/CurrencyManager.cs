@@ -22,7 +22,7 @@ public class CurrencyManager : MonoBehaviour
     [Button]
     private void Add5000()
     {
-        AddCurrency(100);
+        AddCurrency(1000);
     }
     public void AddCurrency(int price)
     {

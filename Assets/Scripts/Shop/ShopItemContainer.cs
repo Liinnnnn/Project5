@@ -50,20 +50,21 @@ public class ShopItemContainer : MonoBehaviour
     }
     public void Configure(ObjectDataSO w)
     {
-        PurchaseButton.interactable = CurrencyManager.instance.HasEnough(w.sellPrice);
+        int buyPrice = w.sellPrice * 2;
+        PurchaseButton.interactable = CurrencyManager.instance.HasEnough(buyPrice);
         configureStatsContainer(w.BaseStat);
         PurchaseButton.onClick.AddListener(()=>Purchase());
         
         icon.sprite = w.icon;
         
         ItemName.text = w.Name ;
-        priceText.text = w.sellPrice.ToString();
+        priceText.text = buyPrice.ToString();
         Color imgColor = ColorHolder.getColor(w.rarity);
         ItemName.color = imgColor;
         levelImage.color = imgColor;
         objectData = w;
         Debug.Log(w);
-        itemPrice = w.sellPrice;
+        itemPrice = buyPrice;
     }
     private void configureStatsContainer(Dictionary<Stats,float> calc)
     {

@@ -16,7 +16,7 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     [SerializeField] protected LayerMask enemyLayer;
     [SerializeField] protected float aimLerp;
     [Header("LEVEL")]
-    [field: SerializeField] public float Level {get;private set;}
+    [field: SerializeField] public int Level {get;private set;}
 
     void Start()
     {
@@ -87,5 +87,13 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     {
         Level = lv;
         ConfigureStats();
+    }
+    public int getSellPrice()
+    {
+        return WeaponStatsCalculated.GetSellPrice(weaponData,Level);
+    }
+    public void upgrade()
+    {
+        UpgradeTo(Level+1);
     }
 }

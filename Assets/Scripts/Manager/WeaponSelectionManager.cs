@@ -22,6 +22,7 @@ public class WeaponSelectionManager : MonoBehaviour,IGameStateListener
         {
             case GameState.GAME :
             case GameState.SHOP :
+            case GameState.WAVETRANS :
                 if(selectedWeapon == null) return;
                 playerWeapon.tryAddWeapon(selectedWeapon,initialLevel);
                 selectedWeapon =null;

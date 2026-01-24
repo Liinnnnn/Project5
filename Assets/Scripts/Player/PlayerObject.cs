@@ -29,4 +29,12 @@ public class PlayerObject : MonoBehaviour
         objects.Add(randomObj);
         playerStatsManager.AddObject(randomObj.BaseStat);
     }
+    public void recyle(ObjectDataSO objectDataSO)
+    {
+        objects.Remove(objectDataSO);
+
+        CurrencyManager.instance.AddCurrency(objectDataSO.sellPrice);
+
+        playerStatsManager.RemoveObjecStats(objectDataSO.BaseStat);
+    }
 }

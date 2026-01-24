@@ -66,4 +66,12 @@ public class PlayerStatsManager : MonoBehaviour
         updatePlayerStat();
 
     }
+    public void RemoveObjecStats(Dictionary<Stats,float> objStats)
+    {
+        foreach (KeyValuePair<Stats,float> k in objStats)
+        {
+            objectStats[k.Key]-= k.Value;
+        }
+        updatePlayerStat();
+    }
 }

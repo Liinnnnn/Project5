@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
@@ -15,5 +17,31 @@ public class PlayerWeapon : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public Weapon[] GetWeapons()
+    {
+        List<Weapon> weapons = new List<Weapon>();
+        foreach (WeaponPosition w in WParents)
+        {
+            if(w.weapon != null)
+                weapons.Add(w.weapon);
+            else weapons.Add(null);
+        }
+        return weapons.ToArray();
+    }
+
+    public void Recyle(int index)
+    {
+        for (int i = 0; i < WParents.Length; i++)
+        {
+            if(i !=index) continue;
+            int recyclePrice = WParents[i].weapon.getSellPrice();
+            CurrencyManager.instance.AddCurrency(recyclePrice);
+            WParents[i].removeWeapon();
+            return;
+        }
+        Debug.Log("recycle at" +  index);
+        
     }
 }

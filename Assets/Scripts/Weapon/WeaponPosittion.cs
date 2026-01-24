@@ -7,9 +7,17 @@ public class WeaponPosition : MonoBehaviour
     {
         w.UpgradeTo(lv);
         
-        weapon =w;
+        weapon = w;
         Instantiate(w,transform);
 
         w.transform.localRotation = Quaternion.identity;
+    }
+    public void removeWeapon()
+    {
+        foreach (Transform w in transform)
+        {
+            Destroy(w.gameObject);
+        }
+        weapon = null;
     }
 }

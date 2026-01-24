@@ -24,4 +24,8 @@ public static class WeaponStatsCalculated
     {
         return Mathf.RoundToInt(a.price * ((int )level + 1));
     }
+    public static int GetSellPrice(WeaponDataSO a,float level)
+    {
+        return Mathf.RoundToInt(a.price * ((int )level + 1) / 2);
+    }
 }

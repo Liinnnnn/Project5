@@ -17,10 +17,12 @@ public class ShopManager : MonoBehaviour,IGameStateListener
     [SerializeField] private Button rerollButton;
     [SerializeField] private int rerollPrice;
     [SerializeField] private TextMeshProUGUI priceText;
+    public static Action onItemPurchase;
     void Awake()
     {
         ShopItemContainer.onPurchase += ItemBuy;
         CurrencyManager.spent += CurrencyManagerCallback;
+        
     }
 
     public void GameStateChangeCallBack(GameState gameState)
@@ -34,6 +36,7 @@ public class ShopManager : MonoBehaviour,IGameStateListener
 
     private void Configure()
     {
+        
         List<GameObject> ToDestroy = new List<GameObject>();
         for (int i = 0; i < ContainerParent.childCount; i++)
         {
@@ -89,6 +92,7 @@ public class ShopManager : MonoBehaviour,IGameStateListener
         playerObject.AddObject(c.objectData);
         CurrencyManager.instance.UseCoin(c.objectData.sellPrice);
         Destroy(c.gameObject);
+        onItemPurchase?.Invoke();
 
     }
 
@@ -101,6 +105,7 @@ public class ShopManager : MonoBehaviour,IGameStateListener
 
             Destroy(s.gameObject);
         }
+        onItemPurchase?.Invoke();
     }
 
     private void CurrencyManagerCallback()
