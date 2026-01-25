@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class UIManager : MonoBehaviour,IGameStateListener
     [SerializeField] private GameObject weapon;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject complete;
+    [SerializeField] private GameObject pause;
+    [SerializeField] private GameObject confirmPanel;
+    [SerializeField] private GameObject settingsPanel;
 
     private List<GameObject> panels = new List<GameObject>();
     void Start()
@@ -27,6 +31,27 @@ public class UIManager : MonoBehaviour,IGameStateListener
             complete
         } );
         ShowPanel(menu);
+    }
+    void Awake()
+    {
+        GameManager.onPaused += PauseCallback;
+        GameManager.onResume += resumeCallback;
+        pause.SetActive(false);
+        confirmPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+    }
+    void OnDestroy()
+    {
+        GameManager.onPaused -= PauseCallback;
+        GameManager.onResume -= resumeCallback;
+    }
+    private void PauseCallback()
+    {
+        pause.SetActive(true);
+    }
+    private void resumeCallback()
+    {
+        pause.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,5 +93,16 @@ public class UIManager : MonoBehaviour,IGameStateListener
         {
             p.SetActive(p==panel);
         }
+    }
+    public void showSettings()
+    {
+        settingsPanel.SetActive(true);
+        menu.SetActive(false);
+
+    }
+    public void hideSettings()
+    {
+        settingsPanel.SetActive(false);
+        menu.SetActive(true);
     }
 }

@@ -109,7 +109,6 @@ public class WaveManager : MonoBehaviour,IGameStateListener
             case GameState.GAME :
                 
                 StartWave(currentWave);
-                Time.timeScale = 1;
                 break;
             case GameState.WAVETRANS :
             case GameState.SHOP :
@@ -123,7 +122,6 @@ public class WaveManager : MonoBehaviour,IGameStateListener
                         Destroy(obj);
                     }
                 }
-                Time.timeScale = 0;
                 break;
         }
     }

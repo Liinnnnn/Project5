@@ -30,6 +30,11 @@ public class Player : MonoBehaviour,IPlayerStats
         playerLevel = GetComponent<PlayerLevel>();
         Enemy.onTakeDamage += stealHp;
     }
+    void OnDestroy()
+    {
+        Enemy.onTakeDamage -= stealHp;
+        
+    }
     void Awake()
     {
         instance = this;
@@ -89,6 +94,7 @@ public class Player : MonoBehaviour,IPlayerStats
     }   
     private void Die()
     {
+        Time.timeScale =0;
         GameManager.instance.SetGameState(GameState.GAMEOVER);
     }
     public Vector2 getCenter()

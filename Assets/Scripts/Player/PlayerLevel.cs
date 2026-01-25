@@ -28,6 +28,10 @@ public class PlayerLevel : MonoBehaviour
     {
         
     }
+    void OnDestroy()
+    {
+        XP.onCollected -=getXP;
+    }
     private void UpdateXP()
     {
         requiredXp = (level + 1) * 5;

@@ -77,7 +77,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     }
     void OnDisable()
     {
-       
+        input = Vector2.zero;
     }
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {

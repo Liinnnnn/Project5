@@ -24,7 +24,12 @@ public class ShopManager : MonoBehaviour,IGameStateListener
         CurrencyManager.spent += CurrencyManagerCallback;
         
     }
-
+    void OnDestroy()
+    {
+          ShopItemContainer.onPurchase -= ItemBuy;
+        CurrencyManager.spent -= CurrencyManagerCallback;
+        
+    }
     public void GameStateChangeCallBack(GameState gameState)
     {
         if(gameState == GameState.SHOP)

@@ -34,7 +34,10 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
         instance = this;
         Chest.onCollected += ChestCollected;
     }
-
+    void OnDestroy()
+    {
+        Chest.onCollected -= ChestCollected;
+    }
 
     public void GameStateChangeCallBack(GameState gameState)
     {

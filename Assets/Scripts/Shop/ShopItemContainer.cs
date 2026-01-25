@@ -31,7 +31,11 @@ public class ShopItemContainer : MonoBehaviour
         CurrencyManager.spent += Check;
         
     }
-   
+    void OnDestroy()
+    {
+        CurrencyManager.spent -= Check;
+        
+    }
     public void Configure(WeaponDataSO w,int level)
     {
         PurchaseButton.interactable = CurrencyManager.instance.HasEnough(w.price);

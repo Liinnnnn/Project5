@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static Action onPaused;
+    public static Action onResume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,9 +53,23 @@ public class GameManager : MonoBehaviour
             gameStateListener.GameStateChangeCallBack(gameState);
         }
     }
-
+    public void pauseGame()
+    {
+        Time.timeScale = 0;
+        onPaused?.Invoke();
+    }
+    public void resumeGame()
+    {
+        Time.timeScale = 1;
+        onResume?.Invoke();
+    }
+    public void restartFromPause()
+    {
+        ManagerGameOver();
+    }
     public void ManagerGameOver()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

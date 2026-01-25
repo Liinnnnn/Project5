@@ -29,7 +29,8 @@ public class InventoryItemInfo : MonoBehaviour
         );
         merge.gameObject.SetActive(true);
 
-        merge.interactable = WeaponMerge.instance.CanMerge(w);
+        // merge.interactable = WeaponMerge.instance.CanMerge(w);
+        merge.interactable = false;
         // merge.onClick.RemoveAllListeners();
         merge.onClick.AddListener(() => WeaponMerge.instance.Merge());
     }
