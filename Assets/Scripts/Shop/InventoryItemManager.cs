@@ -29,8 +29,6 @@ public class InventoryItemManager : MonoBehaviour,IGameStateListener
         ShopManager.onItemPurchase -= ItemPurchase;
         WeaponMerge.onMerge -= MergeCallback;
         GameManager.onPaused -= Configure;
-
-        
     }
 
     public void GameStateChangeCallBack(GameState gameState)
@@ -47,7 +45,7 @@ public class InventoryItemManager : MonoBehaviour,IGameStateListener
         {
             Destroy(item.gameObject);
         }
-         foreach (Transform item in inventoryItemsPause)
+        foreach (Transform item in inventoryItemsPause)
         {
             Destroy(item.gameObject);
         }

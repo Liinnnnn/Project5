@@ -15,6 +15,7 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private float CritChance;
     [SerializeField] private float Range;
     [SerializeField] private float CritDamage;
+    [SerializeField] public AudioClip attackSounds;
     public Dictionary<Stats,float> BaseStat
     {
         get

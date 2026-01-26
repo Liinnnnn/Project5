@@ -22,6 +22,7 @@ public class Player : MonoBehaviour,IPlayerStats
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private Collider2D playerCollider;
+    public static Action onTakeDamge;
 
     void Start()
     {
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour,IPlayerStats
         float realDamage = damage * Mathf.Clamp(1-(armor/1000),0,1000 );
         health -= realDamage;
         changeHealthBar();
+        onTakeDamge?.Invoke();
         if (health <= 0)
         {
             Die();

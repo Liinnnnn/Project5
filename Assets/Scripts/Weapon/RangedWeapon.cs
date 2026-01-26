@@ -80,6 +80,7 @@ public class RangedWeapon : Weapon
 
         Bullet intancsezbullet = bulletPool.Get();
         intancsezbullet.Shoot(damage,transform.up);
+        playAttackSound();
     }
 
     public override void updateStat(PlayerStatsManager playerStatsManager)

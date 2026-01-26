@@ -21,3 +21,4 @@ MonoBehaviour:
   CritChance: 10
   Range: 5
   CritDamage: 1.25
+  attackSounds: {fileID: 8300000, guid: ca80c59e8dcbb974a9bb12f22f59a966, type: 3}

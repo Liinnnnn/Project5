@@ -36,7 +36,6 @@ public class UIManager : MonoBehaviour,IGameStateListener
     {
         GameManager.onPaused += PauseCallback;
         GameManager.onResume += resumeCallback;
-        pause.SetActive(false);
         confirmPanel.SetActive(false);
         settingsPanel.SetActive(false);
     }

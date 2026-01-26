@@ -60,6 +60,8 @@ public class MeleeWeapon : Weapon
     {
         State = WeaponState.Attacking;
         animator.Play("Attack");
+        damagedEnemies.Clear();
+        playAttackSound();
     }
     private void Attacking()
     {

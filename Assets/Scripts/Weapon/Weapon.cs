@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,15 +16,21 @@ public abstract class Weapon : MonoBehaviour,IPlayerStats
     [SerializeField] protected float aimLerp;
     [Header("LEVEL")]
     [field: SerializeField] public int Level {get;private set;}
+    [Header("Audio")]
+    [SerializeField] protected AudioSource audioSource;
 
-    void Start()
+
+    protected void Awake()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = weaponData.attackSounds;
     }
-
-    // Update is called once per frame
-    void Update()
+    protected void playAttackSound()
     {
-     
+        if(!AudioManager.instance.isSfxOn) return;
+        audioSource.Play();
+        audioSource.pitch = Random.Range(0.95f,1.05f);
     }
     protected Enemy GetClosestEnemy()
     {

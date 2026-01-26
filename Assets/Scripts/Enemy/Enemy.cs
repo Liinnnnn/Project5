@@ -28,6 +28,6 @@ public class Enemy : MonoBehaviour
         deathEffect.Play();
         deathEffect.transform.SetParent(null);
         onDying?.Invoke(transform.position);  
-        Destroy(this.gameObject);    
+        Destroy(gameObject);    
     }   
 }
