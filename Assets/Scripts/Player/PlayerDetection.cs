@@ -12,7 +12,10 @@ public class PlayerDetection : MonoBehaviour
             {
                 return;
             }
-            collectibles.Collect(GetComponent<Player>());
+            if (collectibles is not Chest)
+            {
+                collectibles.Collect(GetComponent<Player>());
+            }
         }
     }
 }

@@ -126,4 +126,18 @@ public class Player : MonoBehaviour,IPlayerStats
         hpRecoverySpd = Mathf.Max(0.0001f,playerStatsManager.GetStatsValue(Stats.HpRecoveryRate));
         hpRecoveryDuration = 1f / hpRecoverySpd;
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+         if (collision.TryGetComponent(out ICollectibles collectibles))
+        {
+            if (!collision.IsTouching(playerCollider))
+            {
+                return;
+            }
+            if (collectibles is Chest)
+            {
+                collectibles.Collect(GetComponent<Player>());
+            }
+        }
+    }
 }

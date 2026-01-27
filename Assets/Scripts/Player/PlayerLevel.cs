@@ -14,6 +14,8 @@ public class PlayerLevel : MonoBehaviour
     [Header("Ref")]
     [SerializeField] private Slider xpBar;
     [SerializeField] private TextMeshProUGUI lv;
+    public static PlayerLevel instance;
+    public static Action onLevelUp;
     void Start()
     {
         xpBar.value = 0;
@@ -21,12 +23,9 @@ public class PlayerLevel : MonoBehaviour
         UpdateSlider();
         XP.onCollected +=getXP;
     }
-
-   
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        instance = this;
     }
     void OnDestroy()
     {
@@ -57,6 +56,7 @@ public class PlayerLevel : MonoBehaviour
         levelThisWave++;
         level+=1;
         UpdateXP();
+        onLevelUp?.Invoke();
     }
     public bool hasLevelUP()
     {

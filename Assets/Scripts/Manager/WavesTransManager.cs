@@ -12,6 +12,7 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
     [SerializeField] private GameObject upgradesContainer;
     [SerializeField] private PlayerStatsManager statsManager;
     [SerializeField] private PlayerObject playerObject;
+    [SerializeField] private TextMeshProUGUI title;
     [Header("Chest Related")]
     private int chestCollected;
     [SerializeField] private ChestContainerUI chestContainer;
@@ -48,8 +49,6 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
                 break;
         }    
     }
-
-
     [Button]
     private void Configure()
     {
@@ -74,7 +73,8 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
     }
     private void BonusSelectedCallback()
     {
-        GameManager.instance.WaveCompleteCallBack();
+        Time.timeScale = 1;
+        GameManager.instance.SetGameState(GameState.GAME);
     }
     private Action GetPerformedAction(Stats stats,out string buttonString)
     {
@@ -139,6 +139,7 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
     private void ChestCollected(Chest chest)
     {   
         chestCollected++;
+        GameManager.instance.LevelUpAndChestCallback();
         Debug.Log(chestCollected);
     }
     public bool HasCollectedChest()
@@ -147,16 +148,24 @@ public class WavesTransManager : MonoBehaviour,IGameStateListener
     }
     private void TryOpenChest()
     {
-        if(chestCollected > 0)
+        if(HasCollectedChest())
         {
             foreach (Transform child in chestContainerParent) {
                 Destroy(child.gameObject);
             } 
+            title.text = "Open chest!";
             ShowObject();
-        }else
+        }else if(PlayerLevel.instance.hasLevelUP())
         {
+            title.text = "Level Up !";
             Configure();
-        }
+        }else ContinueToPlay();
+    }
+
+    private void ContinueToPlay()
+    {
+        Time.timeScale = 1;
+        GameManager.instance.SetGameState(GameState.GAME);
     }
 
     private void ShowObject()

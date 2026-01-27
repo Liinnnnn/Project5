@@ -17,18 +17,19 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void Awake()
     {
         if(instance == null) instance = this;
         else Destroy(gameObject);
+        PlayerLevel.onLevelUp += LevelUpAndChestCallback;
+    }
+    void OnDestroy()
+    {
+        PlayerLevel.onLevelUp -= LevelUpAndChestCallback; 
     }
     public void startGame()
     {
+        Time.timeScale =1;
         SetGameState(GameState.GAME);
     }
     public void openShop()
@@ -75,15 +76,15 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompleteCallBack()
     {
-        if (Player.instance.hasLevelUP() || WavesTransManager.instance.HasCollectedChest())
-        {
-            SetGameState(GameState.WAVETRANS);
-        }
-        else
-        {
-            SetGameState(GameState.SHOP);
-        }
+        Time.timeScale = 0;
+        SetGameState(GameState.SHOP);
     }
+    public void LevelUpAndChestCallback()
+    {
+        Time.timeScale = 0;
+        SetGameState(GameState.WAVETRANS);
+    }
+
 }
 public interface IGameStateListener
 {

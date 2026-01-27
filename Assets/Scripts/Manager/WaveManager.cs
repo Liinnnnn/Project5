@@ -102,15 +102,16 @@ public class WaveManager : MonoBehaviour,IGameStateListener
         return targetPos;
     }
 
+
     public void GameStateChangeCallBack(GameState gameState)
     {
         switch (gameState)
         {
             case GameState.GAME :
-                
+                if(timer == 0)
                 StartWave(currentWave);
+                else ManageCurrentWave();
                 break;
-            case GameState.WAVETRANS :
             case GameState.SHOP :
             case GameState.MENU :
             case GameState.COMPLETE :
