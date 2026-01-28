@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatsIconDataSO
   <StatsIcons>k__BackingField:
   - stats: 0
-    statsIcon: {fileID: 21300000, guid: 5b5b8ff7d8ec8524f84cebf14d3f58a9, type: 3}
+    statsIcon: {fileID: 59496277162103779, guid: 38b03fe05b6d50e4da8ecbbd19c22182, type: 3}
   - stats: 1
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -6939695964637348897, guid: 5ca35b81b760f1447adff89aed602093, type: 3}
   - stats: 2
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: 7632046275510777953, guid: 2b5bba8140c002e46902751391593d21, type: 3}
   - stats: 3
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -2333823786064682851, guid: 063d66e7e78e0424c9d9bd034f2e53f2, type: 3}
   - stats: 4
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: 21300000, guid: 0215ead411bdb194cb45c9311efda046, type: 3}
   - stats: 5
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: 21300000, guid: a14f8921c38a1f246b886de472c04973, type: 3}
   - stats: 6
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -7029977824464231683, guid: 8d1e4e8fc16e619429b716496da6051b, type: 3}
   - stats: 7
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -9109499792536836275, guid: 94fa73450cd5f8e48affce8642c33a6b, type: 3}
   - stats: 8
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -1128947775675819744, guid: 7d1011124d98edb4db724e0104d0d889, type: 3}
   - stats: 9
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -234921791093873616, guid: 5c7b9b0f92074a94abd097a1d3467930, type: 3}
   - stats: 10
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: 21300000, guid: 5994006f5304a18419190e8e26ca7187, type: 3}
   - stats: 11
-    statsIcon: {fileID: 0}
+    statsIcon: {fileID: -3611494019893066446, guid: b77eaf5f8fdcb794fadb57e0b76d8a42, type: 3}

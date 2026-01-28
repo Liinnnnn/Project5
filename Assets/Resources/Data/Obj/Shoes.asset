@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951865988d455a94db7b472d90b88188, type: 3}
   m_Name: Shoes
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
-  <Name>k__BackingField: Heart
-  <icon>k__BackingField: {fileID: 21300000, guid: f6582e36b1a246e4aa34628028cb63c5, type: 3}
+  <Name>k__BackingField: Shoes
+  <icon>k__BackingField: {fileID: -7836404393440529144, guid: a8884527fe61e484a9986dca8bcde9cb, type: 3}
   <sellPrice>k__BackingField: 100
   <rarity>k__BackingField: 1
   statDatas:
   - stats: 4
     value: 0.2
   - stats: 5
-    value: -2
+    value: 2
