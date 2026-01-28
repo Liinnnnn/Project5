@@ -81,7 +81,7 @@ public class WaveManager : MonoBehaviour,IGameStateListener
     }
     private void StartNextWave()
     {
-        isTimerOn =false;
+        isTimerOn = false;
         currentWave++;
         if(currentWave >= waves.Length)
         {
@@ -90,10 +90,11 @@ public class WaveManager : MonoBehaviour,IGameStateListener
         else
         { 
             GameManager.instance.WaveCompleteCallBack();
+            timer = 0;
             // StartCoroutine(StartWave(currentWave));
         } 
     }
-
+    
     private Vector2 SpawnPosition()
     {
         Vector2 direction = UnityEngine.Random.onUnitSphere;
