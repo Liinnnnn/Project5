@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.WAVETRANS);
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void SetGameState(GameState gameState)
     {
         IEnumerable<IGameStateListener> nameState =  
